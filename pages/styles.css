@@ -1,0 +1,114 @@
+/* Fade effect */
+body:not(.home) {
+    opacity: 0.2;
+    animation: fadeIn 0.2s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Shop */
+
+/* mobile only */
+@media (max-width:600px)  {
+	.woocommerce-product-gallery {
+		padding: 0 3%;
+	}
+}
+
+
+/* Contact form */
+
+.custom-contact-form {
+  width: 100%;
+  float: left;
+}
+
+.custom-contact-form .form-group {
+  margin-bottom: 10px;
+}
+
+.custom-contact-form input[type="text"],
+.custom-contact-form input[type="email"],
+.custom-contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.custom-contact-form input[type="text"]::placeholder,
+.custom-contact-form input[type="email"]::placeholder,
+.custom-contact-form textarea::placeholder {
+  color: #999;
+  font-family: helvetica, sans-serif;
+}
+
+.custom-contact-form button {
+  background-color: #00d859;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-contact-form button:hover:not(:disabled) {
+  background-color: #00c050;
+}
+
+.custom-contact-form button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+#message {
+  width: 100%;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.flatpickr-calendar {
+	font-family: helvetica, sans-serif;
+}
+
+.flatpickr-month,
+.flatpickr-current-month,
+.flatpickr-weekdays,
+.flatpickr-days {
+	font-family: helvetica, sans-serif;
+}
+
+.flatpickr-month {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.flatpickr-current-month .cur-month {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.flatpickr-weekday {
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.flatpickr-day {
+	font-size: 14px;
+}
+
+/* Newsletter signup */
+
+#response-message {
+	font-size: 20px; 
+	font-family: helvetica, sans-serif;
+  color: #323232;
+}
