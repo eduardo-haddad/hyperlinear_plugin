@@ -6,7 +6,7 @@ The **Hyperlinear Plugin** is a custom WordPress plugin developed to streamline 
 
 ![Hyperlinear plugin diagram](plugin/docs/diagram.png)
 
-## Pre-requisites
+## Requirements
 
 1. The current newsletter setup requires a Brevo acccount - https://www.brevo.com. This service will handle the contact lists and email sending.
     - For security reasons, Brevo requires you to authenticate your domain by adding certain DNS records to your hosting provider (check [docs](https://help.brevo.com/hc/en-us/articles/12163873383186-Authenticate-your-domain-with-Brevo-Brevo-code-DKIM-record-DMARC-record)). The image below shows the config changed in One.com's DNS editor.
