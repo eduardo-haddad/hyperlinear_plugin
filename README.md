@@ -62,6 +62,7 @@ The plugin provides error messages for various scenarios. The errors will be ret
 - HTML and Javascript code was implemented and published in the Contact page in Wordpress (check `pages/contact_form.html`). The code will get the contents from the contact form and will forward it to Email.js, which will then relay the message to the site admins using a predefined email template.
 
 - The email template can be configured this way:
+![Email.js template configuration](emailjs/emailjs_template_config.png)
   - Login to your [emailjs.com](https://www.emailjs.com) account
   - Go to `Email Templates`, then create/edit a template
   - Click `Edit content` and find the `Code editor` so you can add html code
