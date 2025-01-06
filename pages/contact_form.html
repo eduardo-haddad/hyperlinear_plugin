@@ -1,148 +1,122 @@
-<form id="contact-form" class="custom-contact-form">
+<div id="contact-form" class="custom-contact-form">
+  <div class="form-group">
+    <label for="contact_type">Contact Type</label>
+    <select id="contact_type" name="contact_type" required>
+      <option value="general">General enquiries</option>
+      <option value="mentorship">Mentorship request</option>
+    </select>
+  </div>
+
+  <!-- General Enquiries Fields -->
+  <div id="general-fields">
     <div class="form-group">
-      <label for="contact_type">Contact Type</label>
-      <select id="contact_type" name="contact_type" required>
-        <option value="general">General enquiries</option>
-        <option value="mentorship">Mentorship request</option>
-      </select>
+      <input type="text" id="from_name" name="from_name" placeholder="Name" required>
     </div>
-  
-    <!-- General Enquiries Fields -->
-    <div id="general-fields">
-      <div class="form-group">
-        <input type="text" id="from_name" name="from_name" placeholder="Name" required>
-      </div>
-      <div class="form-group">
-        <input type="email" id="from_email" name="from_email" placeholder="Email" required>
-      </div>
-      <div class="form-group">
-        <textarea id="message" name="message" placeholder="Message" required></textarea>
-      </div>
+    <div class="form-group">
+      <input type="email" id="from_email" name="from_email" placeholder="Email" required>
     </div>
-  
-    <!-- Mentorship Request Fields -->
-    <div id="mentorship-fields" style="display: none;">
-      <div class="form-group">
-        <label for="mentorship_dates">Dates</label>
-        <input type="text" id="mentorship_dates" name="mentorship_dates" placeholder="Select date range">
-      </div>
-      <div class="form-group">
-        <input type="text" id="mentorship_name" name="mentorship_name" placeholder="Name">
-      </div>
-      <div class="form-group">
-        <input type="email" id="mentorship_email" name="mentorship_email" placeholder="Email">
-      </div>
-      <div class="form-group">
-        <textarea id="mentorship_message" name="mentorship_message" placeholder="Message"></textarea>
-      </div>
+    <div class="form-group">
+      <textarea id="message" name="message" placeholder="Message" required></textarea>
     </div>
-  
-    <button type="submit" id="submit-btn">Send</button>
-  </form>
-  
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css" />
-  
-  <script>
-  (function() {
-    emailjs.init("QY0CpB3KgbJzs2W7L");
-  
-    var form = document.getElementById('contact-form');
-    var submitButton = document.getElementById('submit-btn');
-    var contactType = document.getElementById('contact_type');
-    var generalFields = document.getElementById('general-fields');
-    var mentorshipFields = document.getElementById('mentorship-fields');
-  
-    // Initialize Flatpickr for the date range selection
-    flatpickr("#mentorship_dates", {
-      mode: "range",
-      dateFormat: "Y-m-d"
-    });
-  
-    // Handle Contact Type change and manage required attributes
-    contactType.addEventListener('change', function() {
-      if (this.value === 'general') {
-        generalFields.style.display = 'block';
-        mentorshipFields.style.display = 'none';
-  
-        // Set required attributes for general fields
-        document.getElementById('from_name').setAttribute('required', 'true');
-        document.getElementById('from_email').setAttribute('required', 'true');
-        document.getElementById('message').setAttribute('required', 'true');
-  
-        // Remove required attributes for mentorship fields
-        document.getElementById('mentorship_name').removeAttribute('required');
-        document.getElementById('mentorship_email').removeAttribute('required');
-        document.getElementById('mentorship_message').removeAttribute('required');
-        document.getElementById('mentorship_dates').removeAttribute('required');
-  
-      } else if (this.value === 'mentorship') {
-        generalFields.style.display = 'none';
-        mentorshipFields.style.display = 'block';
-  
-        // Remove required attributes for general fields
-        document.getElementById('from_name').removeAttribute('required');
-        document.getElementById('from_email').removeAttribute('required');
-        document.getElementById('message').removeAttribute('required');
-  
-        // Set required attributes for mentorship fields
-        document.getElementById('mentorship_name').setAttribute('required', 'true');
-        document.getElementById('mentorship_email').setAttribute('required', 'true');
-        document.getElementById('mentorship_message').setAttribute('required', 'true');
-        document.getElementById('mentorship_dates').setAttribute('required', 'true');
-      }
-    });
-  
-    // Handle form submission
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-  
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending...';
-  
-      var templateParams;
-  
-      // Prepare template parameters based on contact type
-      if (contactType.value === 'general') {
-        templateParams = {
-          from_name: this.from_name.value,
-          from_email: this.from_email.value,
-          message: this.message.value,
-          contact_type: 'General enquiries'
-        };
-      } else if (contactType.value === 'mentorship') {
-        templateParams = {
-          from_name: this.mentorship_name.value,
-          from_email: this.mentorship_email.value,
-          message: this.mentorship_message.value,
-          mentorship_dates: this.mentorship_dates.value,
-          contact_type: 'Mentorship request'
-        };
-      }
-  
-      // Send email using EmailJS
-      emailjs.send('hyperlinear_service', 'hyperlinear_template', templateParams)
-        .then(function() {
-          submitButton.textContent = 'Sent!';
-          form.reset();
-          contactType.dispatchEvent(new Event('change')); // Reset fields visibility
-          setTimeout(function() {
-            submitButton.textContent = 'Send';
-            submitButton.disabled = false;
-          }, 3000);
-        }, function(error) {
-          submitButton.textContent = 'Failed to Send';
-          console.log('Error:', error);
-          setTimeout(function() {
-            submitButton.textContent = 'Send';
-            submitButton.disabled = false;
-          }, 3000);
-        });
-    });
-    
-    // Trigger the change event on page load to apply the correct required attributes
+  </div>
+
+  <!-- Mentorship Request Fields -->
+  <div id="mentorship-fields" style="display: none;">
+    <div class="form-group">
+      <label for="mentorship_dates">Dates</label>
+      <input type="text" id="mentorship_dates" name="mentorship_dates" placeholder="Select date range">
+    </div>
+    <div class="form-group">
+      <input type="text" id="mentorship_name" name="mentorship_name" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <input type="email" id="mentorship_email" name="mentorship_email" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <textarea id="mentorship_message" name="mentorship_message" placeholder="Message"></textarea>
+    </div>
+  </div>
+
+  <button id="submit-btn" onclick="submitContactForm()">Send</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css" />
+
+<script>
+(function() {
+  emailjs.init("QY0CpB3KgbJzs2W7L");
+
+  const contactType = document.getElementById('contact_type');
+  const generalFields = document.getElementById('general-fields');
+  const mentorshipFields = document.getElementById('mentorship-fields');
+
+  // Initialize Flatpickr for the date range selection
+  flatpickr("#mentorship_dates", {
+    mode: "range",
+    dateFormat: "Y-m-d"
+  });
+
+  // Handle Contact Type change
+  contactType.addEventListener('change', () => {
+    if (contactType.value === 'general') {
+      generalFields.style.display = 'block';
+      mentorshipFields.style.display = 'none';
+    } else {
+      generalFields.style.display = 'none';
+      mentorshipFields.style.display = 'block';
+    }
+  });
+
+  // Simplified form submission
+  window.submitContactForm = function() {
+    const submitButton = document.getElementById('submit-btn');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+
+    let templateParams = {};
+
+    if (contactType.value === 'general') {
+      templateParams = {
+        from_name: document.getElementById('from_name').value,
+        from_email: document.getElementById('from_email').value,
+        message: document.getElementById('message').value,
+        contact_type: 'General enquiries'
+      };
+    } else if (contactType.value === 'mentorship') {
+      templateParams = {
+        from_name: document.getElementById('mentorship_name').value,
+        from_email: document.getElementById('mentorship_email').value,
+        message: document.getElementById('mentorship_message').value,
+        mentorship_dates: document.getElementById('mentorship_dates').value,
+        contact_type: 'Mentorship request'
+      };
+    }
+
+    emailjs.send('hyperlinear_service', 'hyperlinear_template', templateParams)
+      .then(() => {
+        submitButton.textContent = 'Sent!';
+        resetContactForm();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        submitButton.textContent = 'Failed to Send';
+      })
+      .finally(() => {
+        setTimeout(() => {
+          submitButton.textContent = 'Send';
+          submitButton.disabled = false;
+        }, 3000);
+      });
+  };
+
+  function resetContactForm() {
+    document.querySelectorAll('#contact-form input, #contact-form textarea').forEach(input => input.value = '');
+    contactType.value = 'general';
     contactType.dispatchEvent(new Event('change'));
-  })();
-  </script>
-  
+  }
+
+  contactType.dispatchEvent(new Event('change'));
+})();
+</script>
